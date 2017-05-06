@@ -17,11 +17,11 @@ class Brand(db.Model):
 
     __tablename__ = "brands"
 
-    brand_id = db.Column(db.string(5), primary_key=True),
-    name = db.Column(db.string(50), nullable=False),
-    founded = db.Column(db.Integer, nullable=False),
-    headquarters = db.Column(db.string(50)),
-    discontinued = db.Column(db.integer)
+    brand_id = db.Column(db.String(5), primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    founded = db.Column(db.Integer, nullable=False)
+    headquarters = db.Column(db.String(50))
+    discontinued = db.Column(db.Integer)
 
     def __repr__(self):
         return "<Brand id=%s name=%s>" % (self.brand_id, self.name)
@@ -32,9 +32,9 @@ class Model(db.Model):
 
     __tablename__ = "models"
 
-    model_id = db.Column(db.Integer, primary_key=True, nullable=False),
-    year = db.Column(db.Integer, nullable=False),
-    brand_id = db.Column(db.String(5), db.ForeignKey('brands.brand_id'), nullable=False),
+    model_id = db.Column(db.Integer, primary_key=True, nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    brand_id = db.Column(db.String(5), db.ForeignKey('brands.brand_id'), nullable=False)
     name = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
@@ -46,9 +46,9 @@ class Award(db.Model):
 
     __tablename__ = 'awards'
 
-    award_id = db.Column(db.Integer, primary_key=True),
-    year = db.Column(db.Integer, nullable=False),
-    winner_id = db.Column(db.Integer, db.ForeignKey('models.model_id')),
+    award_id = db.Column(db.Integer, primary_key=True)
+    year = db.Column(db.Integer, nullable=False)
+    winner_id = db.Column(db.Integer, db.ForeignKey('models.model_id'))
     name = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
