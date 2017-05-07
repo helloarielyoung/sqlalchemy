@@ -56,11 +56,11 @@ q4 = Brand.query.filter(Brand.founded > 1920).all()
 q5 = q5 = Model.query.filter(Model.name.like('Cor%')).all()
 
 # Get all brands that were founded in 1903 and that are not yet discontinued.
-q6 = Brand.query.filter(Brand.founded==1903, Brand.discontinued.is_(None)).all()
+q6 = Brand.query.filter(Brand.founded == 1903, Brand.discontinued.is_(None)).all()
 
 # Get all brands that are either 1) discontinued (at any time) or 2) founded
 # before 1950.
-q7 =  Brand.query.filter((Brand.discontinued != (None)) | (Brand.founded < 1950)).all()
+q7 = Brand.query.filter((Brand.discontinued != (None)) | (Brand.founded < 1950)).all()
 
 # Get all models whose brand_id is not ``for``.
 q8 = Model.query.filter(Model.brand_id != 'for').all()
@@ -112,6 +112,8 @@ def get_models_between(start_year, end_year):
     """Returns all Model objects corresponding to models made between
     start_year (inclusive) and end_year (exclusive)."""
 
+    # tried between, but it is inclusive of start and end years
+    # q = Model.query.filter(Model.year.between(start_year, end_year)).all()
     q = Model.query.filter(Model.year >= start_year, Model.year < end_year).all()
 
     return q
